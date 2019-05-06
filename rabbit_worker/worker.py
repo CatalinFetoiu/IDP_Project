@@ -31,7 +31,7 @@ def callback(ch, method, properties, body):
 	index = event_type + '_index'
 
 	print(event)
-	res = elasticsearch_client.index(index=index, doc_type='log', body=event)
+	#res = elasticsearch_client.index(index=index, doc_type='log', body=event)
 
 	ch.basic_ack(delivery_tag = method.delivery_tag)
 
@@ -56,7 +56,7 @@ def connect_to_elasticsearch():
 
 def main():
 	connect_to_rabbit(sys.argv[1])
-	connect_to_elasticsearch(sys.argv[2])
+	#connect_to_elasticsearch(sys.argv[2])
 
 
 if __name__ == "__main__":
