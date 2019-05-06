@@ -33,6 +33,7 @@ def callback(ch, method, properties, body):
 	print(event)
 	#res = elasticsearch_client.index(index=index, doc_type='log', body=event)
 
+	print('sending ack')
 	ch.basic_ack(delivery_tag = method.delivery_tag)
 
 def connect_to_rabbit(host):

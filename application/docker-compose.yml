@@ -1,0 +1,34 @@
+version: "3"
+services:
+  log_generator:
+    image: catalinfetoiu/idp_project:log_generator
+    networks:
+      - app_network
+    depends_on:
+      [rabbitmq_service:
+        condition: service_healthy
+      ]
+    links: [rabbitmq_service]
+  rabbitmq_service:
+    image: rabbitmq:3
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - app_network
+    healtcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:15672"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+  rabbit_worker:
+    image: catalinfetoiu/idp_project:log_generator
+    networks:
+      - app_network
+    depends_on:
+      [rabbitmq_service:
+        condition: service_healthy
+      ]
+    links: [rabbitmq_service]
+networks:
+  app_network:
