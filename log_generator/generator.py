@@ -26,7 +26,13 @@ def connect_to_rabbit(host):
 	global rabbit_connection
 	global rabbit_channel
 
-	rabbit_connection = pika.BlockingConnection(pika.ConnectionParameters(host))
+	while True:
+		try:
+			rabbit_connection = pika.BlockingConnection(pika.ConnectionParameters(host))
+			break
+		except:
+			time.sleep(1)
+
 	rabbit_channel = rabbit_connection.channel()
 	rabbit_channel.queue_declare(queue=queue_name, durable=True)
 
