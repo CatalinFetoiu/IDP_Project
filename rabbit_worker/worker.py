@@ -7,7 +7,7 @@ import pika
 import json
 import sys, time, random
 
-queue_name = 'logs2'
+queue_name = 'logs'
 ipinfo_handler = None
 
 rabbit_connection = None
