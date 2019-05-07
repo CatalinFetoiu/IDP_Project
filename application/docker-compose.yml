@@ -36,6 +36,8 @@ services:
     image: catalinfetoiu/idp_project:client
     networks:
       - app_network
+    stdin_open: true
+    tty: true
 networks:
   app_network:
 

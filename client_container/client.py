@@ -116,7 +116,7 @@ def main():
 		print('Enter 4 for finding the most frequent event')
 		print('Enter 5 for finding number of events containing a word')
 
-		option = input()
+		option = input('adsadasdadasda')
 		
 		if option == '1':
 			print('Enter number of seconds:')
