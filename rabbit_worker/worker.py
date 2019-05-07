@@ -8,7 +8,6 @@ import json
 import sys, time, random
 
 queue_name = 'logs'
-ipinfo_handler = None
 
 rabbit_connection = None
 rabbit_channel = None
@@ -16,24 +15,25 @@ rabbit_channel = None
 elasticsearch_client = None
 elasticsearch_port = '9200'
 
-countries = ['Romania', 'France', 'United Kingdom', 'Germany']
+countries = ['Romania', 'France', 'United Kingdom', 'Germany', 'Spain', 'Italy']
 
 def get_location(ip_address):
 	return random.choice(countries)
 
 def callback(ch, method, properties, body):
+	global elasticsearch_client
+
 	print(" [x] Received %r" % body)
 
 	event = json.loads(body)
-	event['location'] = get_location(event['ip'])
+	event['country'] = get_location(event['ip'])
 
 	event_type = event['event_type']
 	index = event_type + '_index'
 
 	print(event)
-	#res = elasticsearch_client.index(index=index, doc_type='log', body=event)
+	elasticsearch_client.index(index=index, doc_type='log', body=event)
 
-	print('sending ack')
 	ch.basic_ack(delivery_tag = method.delivery_tag)
 
 def connect_to_rabbit(host):
@@ -55,7 +55,7 @@ def connect_to_rabbit(host):
 
 	rabbit_channel.start_consuming()
 
-def connect_to_elasticsearch():
+def connect_to_elasticsearch(host):
 	global elasticsearch_client
 
 	while True:
@@ -68,7 +68,7 @@ def connect_to_elasticsearch():
 
 def main():
 	connect_to_rabbit(sys.argv[1])
-	#connect_to_elasticsearch(sys.argv[2])
+	connect_to_elasticsearch(sys.argv[2])
 
 
 if __name__ == "__main__":

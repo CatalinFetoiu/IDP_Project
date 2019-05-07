@@ -11,7 +11,7 @@ services:
       - "15672:15672"
     networks:
       - app_network
-    healtcheck:
+    healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:15672"]
       interval: 5s
       timeout: 10s
@@ -20,5 +20,23 @@ services:
     image: catalinfetoiu/idp_project:log_generator
     networks:
       - app_network
+  elasticsearch_service:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.7.0
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - app_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+  client:
+    image: catalinfetoiu/idp_project:client
+    networks:
+      - app_network
 networks:
   app_network:
+volume:
+  

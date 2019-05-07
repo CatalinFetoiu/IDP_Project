@@ -46,6 +46,11 @@ def publish_event(event):
 def get_timestamp():
 	return int(time.time())
 
+def generate message():
+	size = random.randint(0, 27)
+
+	return ' '.join([random.choice(string.ascii_lowercase) for _ in range(size)])
+
 def generate_event(timestamp):
 	ip = random.choice(ip_addresses)
 	user = random.choice(user_anons)
@@ -55,7 +60,8 @@ def generate_event(timestamp):
 		'ip': ip,
 		'user': user,
 		'event_type': event_type,
-		'timestamp': timestamp
+		'timestamp': timestamp,
+		'message': generate_message()
 	}
 
 	return json.dumps(event_json)
