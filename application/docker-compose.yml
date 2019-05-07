@@ -38,5 +38,4 @@ services:
       - app_network
 networks:
   app_network:
-volume:
-  
+
