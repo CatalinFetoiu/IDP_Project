@@ -17,7 +17,7 @@ services:
       timeout: 10s
       retries: 10
   rabbit_worker:
-    image: catalinfetoiu/idp_project:log_generator
+    image: catalinfetoiu/idp_project:rabbit_worker
     networks:
       - app_network
   elasticsearch_service:
