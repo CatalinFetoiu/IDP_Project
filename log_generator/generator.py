@@ -17,7 +17,7 @@ ip_addresses = ['20.187.69.219', '114.16.93.195', '71.26.105.228', '3.3.83.233',
 user_anons = ['a5595do8de', 'z4zo4xwqej', 'o9gm30nn18', 'r716x69yaf', 'qyip9iveg2',
 				'dtpvtt4io9', 'xohmvv4xcu', 'px10dhf3xs', '0v2qfw5m78', '1ky8oihkqd']
 
-event_types = ['event_A', 'event_B', 'event_C', 'event_D', 'event_E', 'event_F']
+event_types = ['event_a', 'event_b', 'event_c', 'event_d', 'event_e', 'event_f']
 
 rabbit_connection = None
 rabbit_channel = None

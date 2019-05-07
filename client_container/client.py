@@ -9,7 +9,7 @@ import sys, time
 elasticsearch_client = None
 elasticsearch_port = '9200'
 
-event_types = ['event_A', 'event_B', 'event_C', 'event_D', 'event_E', 'event_F']
+event_types = ['event_a', 'event_b', 'event_c', 'event_d', 'event_e', 'event_f']
 
 def connect_to_elasticsearch(host):
 	global elasticsearch_client
@@ -121,19 +121,19 @@ def main():
 		if option == '1':
 			print('Enter number of seconds:')
 			count = int(input())
-			print('Enter event type (A ... F):')
+			print('Enter event type (a ... f):')
 			event = input()
 
 			timestamp = get_timestamp() - count
 			count_events(timestamp, event)
 
 		elif option == '2':
-			print('Enter event type (A ... F):')
+			print('Enter event type (a ... f):')
 			event = input()
 
 			most_active(event, 'user')
 		elif option == '3':
-			print('Enter event type (A ... F):')
+			print('Enter event type (a ... f):')
 			event = input()
 
 			most_active(event, 'country')
@@ -142,7 +142,7 @@ def main():
 		elif option == '5':
 			print('Enter word to search for:')
 			word = input()
-			print('Enter event type (A ... F):')
+			print('Enter event type (a ... f):')
 			event = input()
 
 			search_word(word, event)
