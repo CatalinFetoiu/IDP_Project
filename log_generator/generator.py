@@ -46,7 +46,7 @@ def publish_event(event):
 def get_timestamp():
 	return int(time.time())
 
-def generate message():
+def generate_message():
 	size = random.randint(0, 27)
 
 	return ' '.join([random.choice(string.ascii_lowercase) for _ in range(size)])
