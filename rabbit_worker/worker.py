@@ -67,8 +67,8 @@ def connect_to_elasticsearch(host):
 
 
 def main():
-	connect_to_rabbit(sys.argv[1])
 	connect_to_elasticsearch(sys.argv[2])
+	connect_to_rabbit(sys.argv[1])
 
 
 if __name__ == "__main__":
