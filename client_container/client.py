@@ -27,7 +27,7 @@ def get_timestamp():
 def count_all_events(event):
 	event_index = event + '_index'
 
-	res = elasticsearch_client.search(index=event_index, body={
+	res = elasticsearch_client.search(index=event_index, size=1000, body={
 		'query': {
 			'match_all': {}
 		}
@@ -39,7 +39,7 @@ def count_all_events(event):
 def count_events(timestamp_bound, event):
 	event_index = 'event_' + event + '_index'
 
-	res = elasticsearch_client.search(index=event_index, body={
+	res = elasticsearch_client.search(index=event_index, size=1000, body={
 		'query': {
 			'range' : {
 	            'timestamp' : {
@@ -55,7 +55,7 @@ def count_events(timestamp_bound, event):
 def most_active(event, field):
 	event_index = 'event_' + event + '_index'
 
-	res = elasticsearch_client.search(index=event_index, body={
+	res = elasticsearch_client.search(index=event_index, size=1000, body={
 		'query': {
 			'match_all': {}
 		}
@@ -76,7 +76,7 @@ def most_active(event, field):
 	for field_value in event_count:
 		final_count.append((event_count[field_value], field_value))
 
-	sorted_count = reverse(sorted(event_count))
+	sorted_count = reversed(sorted(event_count))
 
 	print('Most active ' + field + ' is ' + str(sorted_count[0][1]))
 
@@ -87,14 +87,14 @@ def majority_event():
 		count = count_all_events(event)
 		event_count.append((count, event))
 
-	sorted_count = reverse(sorted(event_count))
+	sorted_count = reversed(sorted(event_count))
 
 	print('Most frequent event is ' + str(sorted_count[0][1]))
 
 def search_word(word, event):
 	event_index = 'event_' + event + '_index'
 
-	res = elasticsearch_client.search(index=event_index, body={
+	res = elasticsearch_client.search(index=event_index, size=1000, body={
 		'query': {
 			'wildcard' : {
 				'message' : '*' + word + '*' 
@@ -116,7 +116,7 @@ def main():
 		print('Enter 4 for finding the most frequent event')
 		print('Enter 5 for finding number of events containing a word')
 
-		option = input('adsadasdadasda')
+		option = input()
 		
 		if option == '1':
 			print('Enter number of seconds:')
