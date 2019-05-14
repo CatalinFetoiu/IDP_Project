@@ -76,7 +76,7 @@ def most_active(event, field):
 	for field_value in event_count:
 		final_count.append((event_count[field_value], field_value))
 
-	sorted_count = reversed(sorted(event_count))
+	sorted_count = list(reversed(sorted(event_count)))
 
 	print('Most active ' + field + ' is ' + str(sorted_count[0][1]))
 
@@ -87,7 +87,7 @@ def majority_event():
 		count = count_all_events(event)
 		event_count.append((count, event))
 
-	sorted_count = reversed(sorted(event_count))
+	sorted_count = list(reversed(sorted(event_count)))
 
 	print('Most frequent event is ' + str(sorted_count[0][1]))
 
