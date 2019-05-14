@@ -76,7 +76,7 @@ def most_active(event, field):
 	for field_value in event_count:
 		final_count.append((event_count[field_value], field_value))
 
-	sorted_count = list(reversed(sorted(event_count)))
+	sorted_count = list(reversed(sorted(final_count)))
 
 	print('Most active ' + field + ' is ' + str(sorted_count[0][1]))
 
